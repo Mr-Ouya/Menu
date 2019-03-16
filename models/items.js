@@ -11,10 +11,8 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         item: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-
+            type: DataTypes.STRING,
+            null: false
         },
 
         ratings: {
@@ -33,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         information: {
 
-            type: DataTypes.TEXT(long),
+            type: DataTypes.TEXT,
             null: false
         },
 
@@ -58,7 +56,7 @@ module.exports = function (sequelize, DataTypes) {
     Items.associate = function (models) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint
-        Items.belongsTo(models.Resturants, {
+        Items.belongsTo(models.resturants, {
             foreignKey: {
                 allowNull: false
             }

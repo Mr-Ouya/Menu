@@ -11,9 +11,8 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         item: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
+            type: DataTypes.STRING,
+            null: false
 
         },
 
@@ -40,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
     Review.associate = function (models) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint
-        Review.belongsTo(models.Account, {
+        Review.belongsTo(models.account, {
             foreignKey: {
                 allowNull: false
             }

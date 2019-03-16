@@ -25,14 +25,19 @@ module.exports = function (sequelize, DataTypes) {
             null: false
         },
         information: {
-            type: DataTypes.TEXT(long),
+            type: DataTypes.TEXT,
             null: false
         },
+        comments: {
+            type: DataTypes.TEXT,
+            null: false
+
+        }
 
     });
 
     Resturants.associate = function (models) {
-        Resturants.belongsToMany(models.Items, {
+        Resturants.hasMany(models.items, {
             foreignKey: {
                 allowNull: false
             }

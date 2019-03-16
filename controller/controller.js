@@ -2,50 +2,69 @@ const db = require("../models");
 var db = require("../models");
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
-var bcrypt = require("bcrypt");
+
 
 
 module.exports = {
 
     //Looking at item or Food to eat
-    findbyItem: function (req, res) {
-        db.findAll({
-            where: { item: req },
-            include: [{
-                model: Items
+    SearchItems: function (req, res) {
+        db.items
+            .findAll(req.body, {
 
-            }]
-        })
+                include: {
+                    model: Items
+                }
+            })
             .then(items => res.json(items))
             .catch(err => res.status(422).json(err));
     },
-    findbyCategory: function (req, res) {
-        db.findAll({
-            where: { categories: req }
-
-        })
+    getItem: function (req, res) {
+        db.items
+            .find(req.params.id, {
+                where: {
+                    id: id
+                },
+                include: [{
+                    model: Items
+                }]
+            })
             .then(cat => res.json(cat))
             .catch(err => res.status(422).json(err));
-
-
-    },
-
+    }
+}
+/*
     findbyRatings: function (req, res) {
         db.findAll({
             where: {
                 ratings: req
-            }
+            },
+            include: [{
+                model: Items
+            }]
+
         })
             .then(rat => res.json(rat))
             .catch(err => res.status(422).json(err))
     },
+
+
+
+
+
+
+
+
     findByResturant: function (req, res) {
 
         db.findAll({
             where: {
 
                 resturants: req
-            }
+            },
+            include: [{
+                model: Items
+            }]
         })
             .then(res => res.json(res))
             .catch(err => res.status(422).json(err))
@@ -74,20 +93,34 @@ module.exports = {
 
     createFoodItem: function (req, res) {
 
-        db.create(req.body)
-            .then(itemC => res.json())
+        db.create(req.body)({
+            include: [{
+                model: Items
+
+            }]
+
+        })
+
+
+            .then(itemC => res.json(itemC))
             .catch(err => res.status(422).json(err));
 
     },
 
     upDataFoodItem(req, res) {
 
-        db.updateOne(req.body)
-            .then(upItem => res.json())
+        db.updateOne(req.body)({
+            include: [{
+                model: Items
+
+            }]
+
+        })
+            .then(upItem => res.json(upItem))
             .catch(err => res.status(422).json(err))
     },
 
-    createComment: function (req, res) {
+    createReview: function (req, res) {
         db.create({
             where: { name = req.body }
         })
@@ -121,4 +154,4 @@ module.exports = {
 
 
 
-}
+*/

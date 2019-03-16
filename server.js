@@ -1,8 +1,7 @@
 var sequelize = ("sequelize");
 var express = require("express");
-var PORT = process.env.PORT || 3001;
-const routes = require("./routes/api-routes");
-var session = require('express-session');
+//const routes = require("./routes/api-routes");
+//var session = require('express-session');
 
 
 
@@ -39,15 +38,14 @@ app.use(express.static("public"));
 
 
 
-app.use(session({
+/*app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: true
 }));
-
+*/
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+
 
 var syncOptions = {
   force: false,
