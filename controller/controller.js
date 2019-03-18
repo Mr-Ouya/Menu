@@ -8,10 +8,26 @@ var Op = Sequelize.Op;
 module.exports = {
 
     //Looking at item or Food to eat
+
+    getAll : function (req,res){
+        db.items({})
+        .then(items => res.json(items))
+        .catch(err => res.status(422).json(err));
+    },
+
+    
     SearchItems: function (req, res) {
         db.items
-            .findAll(req.body, {
+            .findAll({
 
+                where:{
+
+                    item : {[Op.like]: req.items,
+                        }
+
+
+                },
+                
                 include: {
                     model: Items
                 }
@@ -21,19 +37,38 @@ module.exports = {
     },
     getItem: function (req, res) {
         db.items
-            .find(req.params.id, {
+            .find({
                 where: {
-                    id: id
+                    id: req.params.id,
+                    resturants : req.params.resturants
                 },
                 include: [{
                     model: Items
                 }]
             })
+            .then(items => res.json(items))
+            .catch(err => res.status(422).json(err));
+    },
+
+    getCategory: function (req, res){
+
+        db.items
+            .findAll(req,params.category, {
+                where:{
+                    category : category
+                },
+                include: [{
+                    model: Items
+                }]
+
+            })
             .then(cat => res.json(cat))
             .catch(err => res.status(422).json(err));
+
     }
-}
-////////////////////////////////
+
+
+
 
 /*
     findbyRatings: function (req, res) {
