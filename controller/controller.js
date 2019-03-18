@@ -19,15 +19,10 @@ module.exports = {
     SearchItems: function (req, res) {
         db.items
             .findAll({
-
                 where:{
-
                     item : {[Op.like]: req.items,
                         }
-
-
                 },
-                
                 include: {
                     model: Items
                 }
@@ -50,8 +45,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    getCategory: function (req, res){
-
+    getCategoryItem: function (req, res){
         db.items
             .findAll(req,params.category, {
                 where:{
@@ -60,13 +54,14 @@ module.exports = {
                 include: [{
                     model: Items
                 }]
-
             })
             .then(cat => res.json(cat))
             .catch(err => res.status(422).json(err));
 
     }
 
+    
+    
 
 
 
