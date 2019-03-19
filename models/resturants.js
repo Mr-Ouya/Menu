@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         comments: {
             type: DataTypes.TEXT,
-            null: false
+            null: true
 
         }
 

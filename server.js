@@ -1,5 +1,6 @@
 var sequelize = ("sequelize");
 var express = require("express");
+var routes = require("./routes");
 //const routes = require("./routes/api-routes");
 //var session = require('express-session');
 
@@ -29,10 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-app.use(express.static("public"));
 
 // Routes
-
+app.use(routes);
 
 
 

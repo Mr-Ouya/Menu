@@ -1,30 +1,35 @@
 const db = require("../models");
-var db = require("../models");
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
-
+var bcrypt = require("bcrypt")
 
 
 module.exports = {
 
-    //Looking at item or Food to eat
+    /**********************************
+     * LOOKING AT ITEM OR FOOD TO EAT *
+     **********************************/
 
-    getAll : function (req,res){
-        db.items({})
-        .then(items => res.json(items))
-        .catch(err => res.status(422).json(err));
+
+    getAll: function (req, res) {
+        console.log("test");
+        db.items
+            .findAll({})
+            .then(items => res.json(items))
+            .catch(err => res.status(422).json(err));
     },
 
-    
+
     SearchItems: function (req, res) {
         db.items
             .findAll({
-                where:{
-                    item : {[Op.like]: req.items,
-                        }
+                where: {
+                    item: {
+                        [Op.like]: req.items,
+                    }
                 },
                 include: {
-                    model: Items
+                    model: items
                 }
             })
             .then(items => res.json(items))
@@ -35,7 +40,7 @@ module.exports = {
             .find({
                 where: {
                     id: req.params.id,
-                    resturants : req.params.resturants
+                    resturants: req.params.resturants
                 },
                 include: [{
                     model: Items
@@ -45,11 +50,11 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    getCategoryItem: function (req, res){
+    getCategoryItems: function (req, res) {
         db.items
-            .findAll(req,params.category, {
-                where:{
-                    category : category
+            .findAll(req, params.category, {
+                where: {
+                    category: category
                 },
                 include: [{
                     model: Items
@@ -58,10 +63,103 @@ module.exports = {
             .then(cat => res.json(cat))
             .catch(err => res.status(422).json(err));
 
+    },
+
+
+    /***************************************
+     * USERS AND ACCOUNTS LOGIN AND SIGNUP *
+     ***************************************/
+
+    createAccount: function (req, res) {
+        var saltRounds = 10;
+        console.log(req.body);
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+            console.log(req.body.password);
+            if (err) throw err
+
+            bcrypt.hash(req.body.password, salt, function (err, hash) {
+                if (err) throw err;
+                var newaccount = {
+                    username: req.body.username,
+                    email: req.body.email,
+                    password: hash
+                }
+                db.account.create(newaccount).then(function (data) {
+                    res.redirect("/")
+                })
+            })
+        })
+    },
+
+    loginAccount: function (req, res) {
+
+        var username = request.body.username;
+        var password = request.body.password;
+
+        if (username && password) {
+            db.accounts.findAll({
+                where: {
+                    username: username,
+                    // password: password
+                }
+            }).then(function (results) {
+                if (!results) {
+                    res.redirect('/');
+                } else {
+                    bcrypt.compare(password, results[0].dataValues.password, function (err, results) {
+                        if (err) throw err;
+                        if (results == true) {
+                            request.session.loggedin = true;
+                            request.session.username = username;
+                            response.redirect('/');
+
+                        } else {
+                            response.send("Incorrect Password or Username");
+                        }
+
+
+
+                    })
+
+                }
+            })
+        }
+    },
+
+
+    /***********************
+     * RESTURANTS AND MENU *
+     ***********************/
+
+    getAllResturants: function (req, res) {
+
+
+        db.resturants
     }
 
-    
-    
+
+
+
+
+
+/******************
+ * CREATING ITEMS *
+ ******************/
+
+
+ createItem: function (req, res) {
+
+
+    }
+
+
+
+
+
+}
+
+
+
 
 
 
@@ -177,7 +275,6 @@ module.exports = {
 
 
     /////////////////////
-
 
 
 
