@@ -149,6 +149,7 @@ module.exports = {
 
  createItem: function (req, res) {
 
+        db.create(req.body)
 
     }
 
