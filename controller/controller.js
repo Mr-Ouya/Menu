@@ -135,7 +135,11 @@ module.exports = {
 
 
         db.resturants
-    }
+
+
+
+
+    },
 
 
 
@@ -149,7 +153,14 @@ module.exports = {
 
  createItem: function (req, res) {
 
-        db.create(req.body)
+        db.items.create({
+
+
+
+
+
+        })
+        
 
     }
 
