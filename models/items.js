@@ -1,3 +1,5 @@
+var Sequelize = require("sequelize")
+
 module.exports = function (sequelize, DataTypes) {
 
 
@@ -25,10 +27,7 @@ module.exports = function (sequelize, DataTypes) {
 
 
         },
-        resturants: {
-            type: DataTypes.STRING(100),
-            null: false
-        },
+
         information: {
 
             type: DataTypes.TEXT,
@@ -48,8 +47,9 @@ module.exports = function (sequelize, DataTypes) {
 
             type: DataTypes.STRING(255),
             null: false
-        }
-
+        },
+        createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') },
+        updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') }
     });
 
 
@@ -59,7 +59,8 @@ module.exports = function (sequelize, DataTypes) {
         Items.belongsTo(models.resturants, {
             foreignKey: {
                 allowNull: false
-            }
+            },
+            as: "itemB"
         });
     };
     return Items

@@ -1,3 +1,5 @@
+var Sequelize = require("sequelize")
+
 module.exports = function (sequelize, DataTypes) {
 
 
@@ -31,8 +33,8 @@ module.exports = function (sequelize, DataTypes) {
 
             type: DataTypes.STRING(255),
             null: false
-        }
-
+        }, createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') },
+        updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') }
     });
 
     ;
@@ -42,7 +44,8 @@ module.exports = function (sequelize, DataTypes) {
         Review.belongsTo(models.account, {
             foreignKey: {
                 allowNull: false
-            }
+            },
+            as: "revAccount"
         });
     };
     return Review

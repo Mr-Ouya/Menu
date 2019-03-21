@@ -1,3 +1,5 @@
+var Sequelize = require("sequelize")
+
 module.exports = function (sequelize, DataTypes) {
 
 
@@ -30,17 +32,17 @@ module.exports = function (sequelize, DataTypes) {
         },
         comments: {
             type: DataTypes.TEXT,
-            null: true
 
-        }
-
+        }, createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') },
+        updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') }
     });
 
     Resturants.associate = function (models) {
         Resturants.hasMany(models.items, {
             foreignKey: {
                 allowNull: false
-            }
+            },
+            as: "restItem"
         });
     };
 

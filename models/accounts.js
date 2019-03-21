@@ -1,3 +1,4 @@
+var Sequelize = require("sequelize")
 module.exports = function (sequelize, DataTypes) {
 
 
@@ -24,7 +25,9 @@ module.exports = function (sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING(100),
             null: false
-        }
+        },
+        createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') },
+        updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') }
 
     });
     Account.associate = function (models) {

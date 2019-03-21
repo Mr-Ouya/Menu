@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const controller = require("../../controller/controller.js");
 
-router("/new_account")
-    .get(controller.createAccount)
+router.route("/new_account")
+    .post(controller.createAccount)
 
-router("/auth")
+router.route("/auth")
     .get(controller.loginAccount);
 
 

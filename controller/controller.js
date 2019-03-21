@@ -28,9 +28,9 @@ module.exports = {
                         [Op.like]: req.items,
                     }
                 },
-                include: {
-                    model: items
-                }
+                include: [itemB]
+
+
             })
             .then(items => res.json(items))
             .catch(err => res.status(422).json(err));
@@ -42,9 +42,8 @@ module.exports = {
                     id: req.params.id,
                     resturants: req.params.resturants
                 },
-                include: [{
-                    model: Items
-                }]
+                include: [itemB]
+
             })
             .then(items => res.json(items))
             .catch(err => res.status(422).json(err));
@@ -56,9 +55,8 @@ module.exports = {
                 where: {
                     category: category
                 },
-                include: [{
-                    model: Items
-                }]
+                include: [itemB]
+
             })
             .then(cat => res.json(cat))
             .catch(err => res.status(422).json(err));
@@ -133,25 +131,34 @@ module.exports = {
 
     getAllResturants: function (req, res) {
 
-
-        db.resturants
-
-
-
-
+        db.resturants.findAll({})
+            .then(resAll => res.json(resAll))
+            .catch(err => res.status(422).json(err));
     },
 
 
+    SearchResturant: function (req, res) {
+        db.resturant.findAll({
+            where: {
+                name: { [Op.like]: req.name }
+            }
+        })
+            .then(spcRes => res.json(spcRes))
+            .catch(err => res.status(422).json(err));
+    },
+    findResturants: function (req, res) {
+        db.resturants.find({
+            //            where: { name = req.params.name },
+            include: [restItem]
+        })
+
+    },
+    /******************
+     * CREATING ITEMS *
+     ******************/
 
 
-
-
-/******************
- * CREATING ITEMS *
- ******************/
-
-
- createItem: function (req, res) {
+    createItem: function (req, res) {
 
         db.items.create({
 
@@ -160,7 +167,7 @@ module.exports = {
 
 
         })
-        
+
 
     }
 
