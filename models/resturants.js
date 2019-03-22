@@ -44,6 +44,12 @@ module.exports = function (sequelize, DataTypes) {
             },
             as: "restItem"
         });
+        Resturants.hasMany(models.review, {
+            foreignKey: {
+                allowNull: false
+            },
+            as: "restRev"
+        });
     };
 
 

@@ -47,6 +47,13 @@ module.exports = function (sequelize, DataTypes) {
             },
             as: "revAccount"
         });
+        Review.belongsTo(models.items, {
+            foreignKey: {
+                allowNull: false
+            },
+            as: "revBelongsI"
+        });
+
     };
     return Review
 

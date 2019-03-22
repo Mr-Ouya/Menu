@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
             null: false
         },
 
-        ratings: {
+        rating: {
             type: DataTypes.STRING(50),
             null: false
         },
@@ -62,6 +62,15 @@ module.exports = function (sequelize, DataTypes) {
             },
             as: "itemB"
         });
+
+    
+        Items.hasMany(models.review, {
+            foreignKey:{
+                allowNull : false
+            },
+            as : "itemReview"
+        })
+
     };
     return Items
 
