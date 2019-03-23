@@ -159,7 +159,19 @@ module.exports = {
 
 
     createItem: function (req, res) {
+        
+        db.resturant.find({
 
+            where: {
+                name : {
+                    [Op.like]: req.name
+                }
+            }
+        }).then(res => {
+
+
+            
+        })
         db.items.create({
 
 

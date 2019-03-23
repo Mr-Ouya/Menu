@@ -13,12 +13,12 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         item: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(225),
             null: false
         },
 
         rating: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.INTEGER(50),
             null: false
         },
 
@@ -54,11 +54,11 @@ module.exports = function (sequelize, DataTypes) {
 
 
     Items.associate = function (models) {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
+      
         Items.belongsTo(models.resturants, {
             foreignKey: {
                 allowNull: false
+            
             },
             as: "itemB"
         });

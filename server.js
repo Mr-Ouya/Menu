@@ -2,7 +2,7 @@ var sequelize = ("sequelize");
 var express = require("express");
 var routes = require("./routes");
 //const routes = require("./routes/api-routes");
-//var session = require('express-session');
+const session = require('express-session');
 
 
 
@@ -38,12 +38,12 @@ app.use(routes);
 
 
 
-/*app.use(session({
+app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: true
 }));
-*/
+
 // Routes
 
 
