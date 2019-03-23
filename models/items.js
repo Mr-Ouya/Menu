@@ -54,21 +54,23 @@ module.exports = function (sequelize, DataTypes) {
 
 
     Items.associate = function (models) {
-      
+
         Items.belongsTo(models.resturants, {
             foreignKey: {
-                allowNull: false
-            
-            },
-            as: "itemB"
+                allowNull: false,
+                defaultValue: 0
+
+            }
         });
 
-    
+
         Items.hasMany(models.review, {
-            foreignKey:{
-                allowNull : false
+            foreignKey: {
+                allowNull: true,
+
             },
-            as : "itemReview"
+
+            as: "itemReview"
         })
 
     };

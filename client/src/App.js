@@ -1,26 +1,48 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Wrapper from "./testForm/wrapper"
+import FormCheck from "./testForm/Form"
 
 class App extends Component {
+
+  state = {
+    search: "",
+    results: []
+  }
+
+
+
+  handleChange(event) {
+    this.setState({
+      search: event.target.search
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Wrapper>
+
+        <FormCheck
+
+          value={this.state.search}
+          onChange={this.handleChange}
+
+        />
+
+      </Wrapper>
     );
   }
 }

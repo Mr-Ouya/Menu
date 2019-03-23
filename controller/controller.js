@@ -5,12 +5,9 @@ var bcrypt = require("bcrypt")
 
 
 module.exports = {
-
     /**********************************
      * LOOKING AT ITEM OR FOOD TO EAT *
      **********************************/
-
-
     getAll: function (req, res) {
         console.log("test");
         db.items
@@ -18,8 +15,6 @@ module.exports = {
             .then(items => res.json(items))
             .catch(err => res.status(422).json(err));
     },
-
-
     SearchItems: function (req, res) {
         db.items
             .findAll({
@@ -32,7 +27,9 @@ module.exports = {
 
 
             })
-            .then(items => res.json(items))
+            .then(items =>
+                console.log(items),
+                res.json(items))
             .catch(err => res.status(422).json(err));
     },
     getItem: function (req, res) {
@@ -43,12 +40,10 @@ module.exports = {
                     resturants: req.params.resturants
                 },
                 include: [itemB]
-
             })
             .then(items => res.json(items))
             .catch(err => res.status(422).json(err));
     },
-
     getCategoryItems: function (req, res) {
         db.items
             .findAll(req, params.category, {
@@ -60,21 +55,16 @@ module.exports = {
             })
             .then(cat => res.json(cat))
             .catch(err => res.status(422).json(err));
-
     },
-
-
     /***************************************
      * USERS AND ACCOUNTS LOGIN AND SIGNUP *
      ***************************************/
-
     createAccount: function (req, res) {
         var saltRounds = 10;
         console.log(req.body);
         bcrypt.genSalt(saltRounds, function (err, salt) {
             console.log(req.body.password);
             if (err) throw err
-
             bcrypt.hash(req.body.password, salt, function (err, hash) {
                 if (err) throw err;
                 var newaccount = {
@@ -114,29 +104,19 @@ module.exports = {
                         } else {
                             response.send("Incorrect Password or Username");
                         }
-
-
-
                     })
-
                 }
             })
         }
     },
-
-
     /***********************
      * RESTURANTS AND MENU *
      ***********************/
-
     getAllResturants: function (req, res) {
-
         db.resturants.findAll({})
             .then(resAll => res.json(resAll))
             .catch(err => res.status(422).json(err));
     },
-
-
     SearchResturant: function (req, res) {
         db.resturant.findAll({
             where: {
@@ -151,49 +131,23 @@ module.exports = {
             //            where: { name = req.params.name },
             include: [restItem]
         })
-
     },
     /******************
      * CREATING ITEMS *
      ******************/
-
-
     createItem: function (req, res) {
-        
         db.resturant.find({
-
             where: {
-                name : {
+                name: {
                     [Op.like]: req.name
                 }
             }
         }).then(res => {
-
-
-            
         })
         db.items.create({
-
-
-
-
-
         })
-
-
     }
-
-
-
-
-
 }
-
-
-
-
-
-
 /*
     findbyRatings: function (req, res) {
         db.findAll({

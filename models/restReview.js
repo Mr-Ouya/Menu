@@ -34,8 +34,6 @@ module.exports = function (sequelize, DataTypes) {
 
     ;
     RestReview.associate = function (models) {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
         RestReview.belongsTo(models.resturants, {
             foreignKey: {
                 allowNull: false

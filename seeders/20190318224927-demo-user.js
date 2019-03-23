@@ -17,7 +17,7 @@ module.exports = {
       queryInterface.bulkInsert('resturants', [{
         name: 'Subway',
         rating: 3,
-        location: "2150 Burnhamthorpe Rd W H24, Mississauga, ON L5L 3A2",
+        location: "2150 Burnhamthorpe Rd Wxs H24, Mississauga, ON L5L 3A2",
         information: "goods but not good enough",
       }], {}),
       queryInterface.bulkInsert('resturants', [{
@@ -37,12 +37,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('resturants', null, {});
+
   }
 };
