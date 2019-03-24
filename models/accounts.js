@@ -2,7 +2,7 @@ var Sequelize = require("sequelize")
 module.exports = function (sequelize, DataTypes) {
 
 
-    var Account = sequelize.define("account", {
+    var Account = sequelize.define("Account", {
 
         id: {
             type: DataTypes.INTEGER,
@@ -33,7 +33,7 @@ module.exports = function (sequelize, DataTypes) {
     Account.associate = function (models) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint
-        Account.hasMany(models.review, {
+        Account.hasMany(models.Review, {
             foreignKey: "UserId"
         });
     };

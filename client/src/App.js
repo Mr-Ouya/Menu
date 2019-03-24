@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Wrapper from "./testForm/wrapper"
 import FormCheck from "./testForm/Form"
+import API from "./Utils/API/API"
 
 class App extends Component {
 
@@ -20,6 +20,18 @@ class App extends Component {
   }
 
 
+  searchAll = (e) => {
+    e.preventDefault()
+    console.log("gi")
+    API.getAllFoods()
+      .then(
+        res =>
+          this.setState({ results: res })
+
+      ).catch(err => console.log(err));
+
+  }
+
 
 
 
@@ -36,10 +48,9 @@ class App extends Component {
       <Wrapper>
 
         <FormCheck
-
           value={this.state.search}
           onChange={this.handleChange}
-
+          searchAll={this.searchAll}
         />
 
       </Wrapper>

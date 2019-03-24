@@ -3,7 +3,7 @@ var Sequelize = require("sequelize")
 module.exports = function (sequelize, DataTypes) {
 
 
-    var Review = sequelize.define("review", {
+    var Review = sequelize.define("Review", {
 
         id: {
             type: DataTypes.INTEGER,
@@ -41,13 +41,13 @@ module.exports = function (sequelize, DataTypes) {
     Review.associate = function (models) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint
-        Review.belongsTo(models.account, {
+        Review.belongsTo(models.Account, {
             foreignKey: {
                 allowNull: false
             },
             as: "revAccount"
         });
-        Review.belongsTo(models.items, {
+        Review.belongsTo(models.Items, {
             foreignKey: {
                 allowNull: false
             },

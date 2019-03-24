@@ -1,6 +1,6 @@
-var sequelize = ("sequelize");
-var express = require("express");
-var routes = require("./routes");
+const sequelize = ("sequelize");
+const express = require("express");
+const routes = require("./routes");
 //const routes = require("./routes/api-routes");
 const session = require('express-session');
 
@@ -31,11 +31,6 @@ app.use(express.json());
 
 // Static directory
 
-// Routes
-app.use(routes);
-
-
-
 
 
 app.use(session({
@@ -44,7 +39,9 @@ app.use(session({
   saveUninitialized: true
 }));
 
+
 // Routes
+app.use(routes);
 
 
 var syncOptions = {

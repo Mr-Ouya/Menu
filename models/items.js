@@ -3,7 +3,7 @@ var Sequelize = require("sequelize")
 module.exports = function (sequelize, DataTypes) {
 
 
-    var Items = sequelize.define("items", {
+    var Items = sequelize.define("Items", {
 
         id: {
             type: DataTypes.INTEGER,
@@ -55,7 +55,7 @@ module.exports = function (sequelize, DataTypes) {
 
     Items.associate = function (models) {
 
-        Items.belongsTo(models.resturants, {
+        Items.belongsTo(models.Resturants, {
             foreignKey: {
                 allowNull: false,
                 defaultValue: 0
@@ -64,7 +64,7 @@ module.exports = function (sequelize, DataTypes) {
         });
 
 
-        Items.hasMany(models.review, {
+        Items.hasMany(models.Review, {
             foreignKey: {
                 allowNull: true,
 

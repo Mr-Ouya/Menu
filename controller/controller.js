@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models")
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 var bcrypt = require("bcrypt")
@@ -10,13 +10,15 @@ module.exports = {
      **********************************/
     getAll: function (req, res) {
         console.log("test");
-        db.items
+        db.Items
             .findAll({})
-            .then(items => res.json(items))
+            .then(info =>
+                console.log(info),
+                res.json(info))
             .catch(err => res.status(422).json(err));
     },
     SearchItems: function (req, res) {
-        db.items
+        db.Items
             .findAll({
                 where: {
                     item: {
@@ -33,7 +35,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     getItem: function (req, res) {
-        db.items
+        db.Items
             .find({
                 where: {
                     id: req.params.id,
@@ -45,7 +47,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     getCategoryItems: function (req, res) {
-        db.items
+        db.Items
             .findAll(req, params.category, {
                 where: {
                     category: category
@@ -72,7 +74,7 @@ module.exports = {
                     email: req.body.email,
                     password: hash
                 }
-                db.account.create(newaccount).then(function (data) {
+                db.Account.create(newaccount).then(function (data) {
                     res.redirect("/")
                 })
             })
@@ -85,7 +87,7 @@ module.exports = {
         var password = request.body.password;
 
         if (username && password) {
-            db.accounts.findAll({
+            db.Account.findAll({
                 where: {
                     username: username,
                     // password: password
@@ -113,12 +115,12 @@ module.exports = {
      * RESTURANTS AND MENU *
      ***********************/
     getAllResturants: function (req, res) {
-        db.resturants.findAll({})
+        db.Resturants.findAll({})
             .then(resAll => res.json(resAll))
             .catch(err => res.status(422).json(err));
     },
     SearchResturant: function (req, res) {
-        db.resturant.findAll({
+        db.Resturants.findAll({
             where: {
                 name: { [Op.like]: req.name }
             }
@@ -127,7 +129,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findResturants: function (req, res) {
-        db.resturants.find({
+        db.Resturants.find({
             //            where: { name = req.params.name },
             include: [restItem]
         })
@@ -136,7 +138,7 @@ module.exports = {
      * CREATING ITEMS *
      ******************/
     createItem: function (req, res) {
-        db.resturant.find({
+        db.Resturants.find({
             where: {
                 name: {
                     [Op.like]: req.name

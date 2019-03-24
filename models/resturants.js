@@ -3,7 +3,7 @@ var Sequelize = require("sequelize")
 module.exports = function (sequelize, DataTypes) {
 
 
-    var Resturants = sequelize.define("resturants", {
+    var Resturants = sequelize.define("Resturants", {
 
         id: {
             type: DataTypes.INTEGER,
@@ -38,13 +38,13 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Resturants.associate = function (models) {
-        Resturants.hasMany(models.items, {
+        Resturants.hasMany(models.Items, {
             foreignKey: {
                 allowNull: false
             },
             as: "restItem"
         });
-        Resturants.hasMany(models.review, {
+        Resturants.hasMany(models.Review, {
             foreignKey: {
                 allowNull: false
             },

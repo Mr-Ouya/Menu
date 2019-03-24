@@ -3,7 +3,7 @@ var Sequelize = require("sequelize")
 module.exports = function (sequelize, DataTypes) {
 
 
-    var RestReview = sequelize.define("restreview", {
+    var RestReview = sequelize.define("RestReview", {
 
         id: {
             type: DataTypes.INTEGER,
@@ -34,13 +34,13 @@ module.exports = function (sequelize, DataTypes) {
 
     ;
     RestReview.associate = function (models) {
-        RestReview.belongsTo(models.resturants, {
+        RestReview.belongsTo(models.Resturants, {
             foreignKey: {
                 allowNull: false
             },
             as: "restRev"
         });
-        RestReview.belongsTo(models.account, {
+        RestReview.belongsTo(models.Account, {
             foreignKey: {
                 allowNull: false
             },
