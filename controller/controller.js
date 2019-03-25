@@ -128,18 +128,27 @@ module.exports = {
     },
     findResturant: function (req, res) {
         db.Resturants.find({
-            //            where: { name = req.params.name },
-            include: [restItem]
+            where: { name: req.params.name },
         }).then(function (info) { res.json(info) })
             .catch(function (err) { res.status(422).json(err) })
     },
 
     getResturantMenu: function (req, res) {
+        db.Resturants.find({
+            where: {
+                name: req.params.name
+            }
+        }).then(function (restinfo) {
+            console.log(restinfo)
+            db.Items.findAll({
 
-        db.findAll({
-
-            where: {}
+                where: {
+                    ResturantId: restinfo.id
+                }
+            }).then(function (menu) { res.json(menu) })
+                .catch(function (err) { res.status(422).json(err) })
         })
+
 
     },
     /******************
