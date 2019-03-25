@@ -23,7 +23,7 @@ class App extends Component {
   searchAll = (e) => {
     e.preventDefault()
     console.log("gi")
-    API.getAllFoods()
+    API.getSearchName(this.state.search)
       .then(
         res =>
           this.setState({ results: res })

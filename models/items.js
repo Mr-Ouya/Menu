@@ -18,14 +18,12 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         rating: {
-            type: DataTypes.INTEGER(50),
-            null: false
+            type: DataTypes.ARRAY(DataTypes.INTEGER),
+            defaultValue : [0]
         },
 
         comments: {
             type: DataTypes.STRING(255),
-
-
         },
 
         information: {
@@ -34,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
             null: false
         },
 
-        categories: {
+        category: {
 
             type: DataTypes.STRING(255),
         },
@@ -46,6 +44,7 @@ module.exports = function (sequelize, DataTypes) {
         createdBy: {
 
             type: DataTypes.STRING(255),
+            defaultValue: "Anonymous",
             null: false
         },
         createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') },

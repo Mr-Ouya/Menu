@@ -2,7 +2,9 @@ const db = require("../models")
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 var bcrypt = require("bcrypt")
-
+const operatorsAliases = {
+    $like: Op.like
+  }
 
 module.exports = {
     /**********************************
@@ -12,39 +14,33 @@ module.exports = {
         console.log("test");
         db.Items
             .findAll({})
-            .then(info =>
-                console.log(info),
-                res.json(info))
-            .catch(err => res.status(422).json(err));
-    },
+            .then(function (info){res.json(info) } )
+            .catch(function (err) {res.status(422).json(err)})
+              },
     SearchItems: function (req, res) {
         db.Items
             .findAll({
                 where: {
                     item: {
-                        [Op.like]: req.items,
-                    }
+                        $like: '%'+req.params.name +"%",
+
+                    },
                 },
-                include: [itemB]
-
-
+            
             })
-            .then(items =>
-                console.log(items),
-                res.json(items))
-            .catch(err => res.status(422).json(err));
+            .then(function (info){res.json(info) } )
+            .catch(function (err) {res.status(422).json(err)})
     },
     getItem: function (req, res) {
         db.Items
-            .find({
+            .findOne({
                 where: {
-                    id: req.params.id,
-                    resturants: req.params.resturants
-                },
-                include: [itemB]
-            })
-            .then(items => res.json(items))
-            .catch(err => res.status(422).json(err));
+                        item: req.params.name,
+                        
+                    ResturantId: req.params.resturant
+                }            })
+            .then(function (info){res.json(info) } )
+            .catch(function (err) {res.status(422).json(err)})
     },
     getCategoryItems: function (req, res) {
         db.Items
@@ -55,8 +51,8 @@ module.exports = {
                 include: [itemB]
 
             })
-            .then(cat => res.json(cat))
-            .catch(err => res.status(422).json(err));
+            .then(function (info){res.json(info) } )
+            .catch(function (err) {res.status(422).json(err)})
     },
     /***************************************
      * USERS AND ACCOUNTS LOGIN AND SIGNUP *
@@ -116,23 +112,34 @@ module.exports = {
      ***********************/
     getAllResturants: function (req, res) {
         db.Resturants.findAll({})
-            .then(resAll => res.json(resAll))
-            .catch(err => res.status(422).json(err));
+        .then(function (info){res.json(info) } )
+        .catch(function (err) {res.status(422).json(err)})
     },
     SearchResturant: function (req, res) {
         db.Resturants.findAll({
             where: {
-                name: { [Op.like]: req.name }
+                name: { $like: '%'+req.params.name +"%", }                      
+    
             }
         })
-            .then(spcRes => res.json(spcRes))
-            .catch(err => res.status(422).json(err));
+        .then(function (info){res.json(info) } )
+        .catch(function (err) {res.status(422).json(err)})
     },
-    findResturants: function (req, res) {
+    findResturant: function (req, res) {
         db.Resturants.find({
             //            where: { name = req.params.name },
             include: [restItem]
+        }) .then(function (info){res.json(info) } )
+        .catch(function (err) {res.status(422).json(err)})
+    },
+
+    getResturantMenu: function (req ,res){
+
+        db.findAll({
+
+            where:{ }
         })
+
     },
     /******************
      * CREATING ITEMS *
@@ -141,16 +148,74 @@ module.exports = {
         db.Resturants.find({
             where: {
                 name: {
-                    [Op.like]: req.name
+                    name : name.body.resturant
                 }
+
+        }}).then(function (restF)  {
+
+            itemCreation= {};
+        
+            itemCreation.item= req.body.item;
+            itemCreation.information = req.body.information;
+            itemCreation.categories =req.body.category;
+            itemCreation.price= req.body.price;
+            itemCreation.createdBy = req.body.createdBy
+
+            db.Items.create({itemCreation})
+            .then(function (info){res.json(info) } )
+            .catch(function (err) {res.status(422).json(err)})
+            
+        })
+       
+    },
+
+
+
+
+
+/************************
+ * UPDATING INFORMATION *
+ *          /*          *
+ ************************/
+
+UpdateInfoRest: function (req, res) {
+    db.item.find({
+        where: {
+            item: req.body.resturant
             }
-        }).then(res => {
+
+    }).then(function (restF)  {
+
+        itemCreation= {};
+    
+        itemCreation.item= req.body.item;
+        itemCreation.information = req.body.information;
+        itemCreation.categories =req.body.category;
+        itemCreation.price= req.body.price;
+        itemCreation.createdBy = req.body.createdBy
+
+        db.Items.update({{itemCreation},
+        where:{
+
+
+        }
         })
-        db.items.create({
-        })
-    }
-}
-/*
+        .then(function (info){res.json(info) } )
+        .catch(function (err) {res.status(422).json(err)})
+        
+    })
+   
+},
+
+
+
+
+
+/***********************
+ * SORTING INFORMATION *
+ ***********************/
+
+
     findbyRatings: function (req, res) {
         db.findAll({
             where: {

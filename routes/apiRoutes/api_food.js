@@ -10,11 +10,11 @@ router.route("/:name")
     .get(controller.SearchItems);
 
 // /foods/:id/:restaurant
-router.route("/:id/:resturant")
+router.route("/:name/:resturant")
     .get(controller.getItem);
 
 
-router.route("/:category")
+router.route("/categories/:categories")
     .get(controller.getCategoryItems);
 
 

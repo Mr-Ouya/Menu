@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "proxy": "http://127.0.0.1:5000",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "client": "cd client && npm run start",
     "build": "cd client && npm run build",
-    "server": "nodemon server.js",
+    "server": "nodemon server.js --ignore client ",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
@@ -21,6 +22,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mysql2": "^1.6.5",
+    "nodemon": "^1.18.10",
     "path": "^0.12.7",
     "sequelize": "^4.43.0",
     "sequelize-cli": "^5.4.0"
