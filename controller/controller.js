@@ -185,21 +185,15 @@ UpdateInfoRest: function (req, res) {
             }
 
     }).then(function (restF)  {
-
-        itemCreation= {};
-    
+        itemCreation= {}
         itemCreation.item= req.body.item;
         itemCreation.information = req.body.information;
         itemCreation.categories =req.body.category;
         itemCreation.price= req.body.price;
-        itemCreation.createdBy = req.body.createdBy
-
-        db.Items.update({{itemCreation},
-        where:{
-
-
-        }
-        })
+        itemCreation.createdBy = req.body.created
+        db.Items.update({itemCreation},
+        {where:restF.id}
+        )
         .then(function (info){res.json(info) } )
         .catch(function (err) {res.status(422).json(err)})
         
