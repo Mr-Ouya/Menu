@@ -36,8 +36,6 @@ module.exports = function (sequelize, DataTypes) {
         }, createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') },
         updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.fn('NOW') }
     });
-
-    ;
     Review.associate = function (models) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint

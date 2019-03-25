@@ -6,8 +6,8 @@ export default {
         return axios.get("/menu/foods/");
     },
     // Gets the book with the given id
-    getSearchName: function (id) {
-        return axios.get("/menu/foods/" + id);
+    getSearchName: function (name) {
+        return axios.get("/menu/foods/" + name);
     },
     // Deletes the book with the given id
     getItemSelf: function (id) {
@@ -15,6 +15,6 @@ export default {
     },
     // Saves a book to the database
     getCateogory: function (category) {
-        return axios.post("/menu/foods/" + category);
+        return axios.post("/menu/foods/cateogry/" + category);
     }
 };

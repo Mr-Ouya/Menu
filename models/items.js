@@ -18,8 +18,8 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         rating: {
-            type: DataTypes.ARRAY(DataTypes.INTEGER),
-            defaultValue : [0]
+            type: DataTypes.INTEGER,
+            defaultValue: null,
         },
 
         comments: {

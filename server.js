@@ -3,6 +3,7 @@ const express = require("express");
 const routes = require("./routes");
 //const routes = require("./routes/api-routes");
 const session = require('express-session');
+const path = require('path')
 
 
 
@@ -10,7 +11,7 @@ const session = require('express-session');
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 3001;
+var PORT = process.env.PORT || 5000;
 
 
 
@@ -39,6 +40,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(express.static(path.join(__dirname, "./client/build/index.html")))
 
 // Routes
 app.use(routes);
