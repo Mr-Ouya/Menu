@@ -1,26 +1,59 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Wrapper from "./testForm/wrapper"
+import FormCheck from "./testForm/Form"
+import API from "./Utils/API/API"
 
 class App extends Component {
+
+  state = {
+    search: "",
+    results: []
+  }
+
+
+
+  handleChange(event) {
+    this.setState({
+      search: event.target.search
+    })
+  }
+
+
+  searchAll = (e) => {
+    e.preventDefault()
+    console.log("gi")
+    API.getSearchName(this.state.search)
+      .then(
+        res =>
+          this.setState({ results: res })
+
+      ).catch(err => console.log(err));
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Wrapper>
+
+        <FormCheck
+          value={this.state.search}
+          onChange={this.handleChange}
+          searchAll={this.searchAll}
+        />
+
+      </Wrapper>
     );
   }
 }
