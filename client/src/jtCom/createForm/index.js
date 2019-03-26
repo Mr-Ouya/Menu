@@ -8,23 +8,23 @@ function FormCreate(props) {
         <form action="/menu/create/">
             <div className="form-group">
                 Resturant :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.resturant} onChange={props.handleChange} />
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.resturant} onChange={props.updateCreate} />
             </div>
             <div className="form-group">
-                Search :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.item} onChange={props.handleChange} />
+                Food :
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.item} onChange={props.updateCreate} />
             </div>   <div className="form-group">
-                Search :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.information} onChange={props.handleChange} />
+                Information :
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.information} onChange={props.updateCreate} />
             </div>   <div className="form-group">
-                Search :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.category} onChange={props.handleChange} />
+                Category :
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.category} onChange={props.updateCreate} />
             </div>   <div className="form-group">
-                Search :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.createdBy} onChange={props.handleChange} />
+                CreatedBy :
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.createdBy} onChange={props.updateCreate} />
             </div>   <div className="form-group">
-                Search :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.formvale} onChange={props.handleChange} />
+                Price :
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.price} onChange={props.updateCreate} />
             </div>
 
 

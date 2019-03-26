@@ -156,13 +156,11 @@ module.exports = {
      * CREATING ITEMS *
      ******************/
     createItem: function (req, res) {
-        if (req.body.item || req.body.information || req.body.category || req.body.price || req.body.createdBy === " ") {
-            res.send(alert("Please Fill Form"))
-        } else {
+       
             db.Resturants.find({
                 where: {
                     name: {
-                        name: name.body.resturant
+                        name: req.body.resturant
                     }
                 }
             }).then(function (restF) {
@@ -179,11 +177,11 @@ module.exports = {
                     .catch(function (err) { res.status(422).json(err) })
 
             })
-        }
+        
     },
 
     createResturant: function (req, res) {
-
+        db.Resturants.create({})
 
     },
 

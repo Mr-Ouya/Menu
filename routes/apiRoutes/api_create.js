@@ -2,11 +2,11 @@ const router = require("express").Router();
 const controller = require("../../controller/controller");
 
 // /foods
-router.route("/createItem")
+router.route("/createFood")
     .get(controller.createItem);
 
 // /foods/:name
-router.route("/createResutant")
+router.route("/createResturant")
     .get(controller.SearchItems);
 
 // /foods/:id/:restaurant

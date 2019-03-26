@@ -10,11 +10,14 @@ export default {
         return axios.get("/menu/resturant/search");
     },
     // Deletes the book with the given id
-    getItemSelf: function (id) {
+    getResturantSelf: function (id) {
         return axios.delete("/menu/resturant/" + name);
     },
     // Saves a book to the database
-    getCateogory: function (category) {
+    getResturantMenu: function () {
         return axios.post("/menu/foods/resturant/getMenu" + name);
+    },
+    createResturant: function (){
+        return axios.post("/menu/create/createResturant")
     }
 };
