@@ -6,7 +6,7 @@ router.route("/")
     .get(controller.getAll);
 
 // /foods/:name
-router.route("/:name")
+router.route("/search")
     .get(controller.SearchItems);
 
 // /foods/:id/:restaurant
@@ -14,7 +14,7 @@ router.route("/:name/:resturant")
     .get(controller.getItem);
 
 
-router.route("/categories/:categories")
+router.route("/category/:category")
     .get(controller.getCategoryItems);
 
 

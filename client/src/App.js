@@ -3,6 +3,7 @@ import './App.css';
 import Wrapper from "./testForm/wrapper"
 import FormCheck from "./testForm/Form"
 import API from "./Utils/API/API"
+import Results from "./results";
 
 class App extends Component {
 
@@ -24,9 +25,9 @@ class App extends Component {
     e.preventDefault()
     console.log("gi")
     API.getSearchName(this.state.search)
-      .then(
-        res =>
-          this.setState({ results: res })
+      .then(res =>
+
+        this.setState({ results: res })
 
       ).catch(err => console.log(err));
 
@@ -52,8 +53,15 @@ class App extends Component {
           onChange={this.handleChange}
           searchAll={this.searchAll}
         />
+        <Results
+
+          results={this.state.results}
+
+        />
 
       </Wrapper>
+
+
     );
   }
 }

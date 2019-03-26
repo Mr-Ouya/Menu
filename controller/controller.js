@@ -22,7 +22,7 @@ module.exports = {
             .findAll({
                 where: {
                     item: {
-                        $like: '%' + req.params.name + "%",
+                        $like: '%' + req.body.name + "%",
 
                     },
                 },
@@ -32,6 +32,7 @@ module.exports = {
             .catch(function (err) { res.status(422).json(err) })
     },
     getItem: function (req, res) {
+
         db.Items
             .findOne({
                 where: {
@@ -45,9 +46,9 @@ module.exports = {
     },
     getCategoryItems: function (req, res) {
         db.Items
-            .findAll(req, params.category, {
+            .findAll({
                 where: {
-                    category: category
+                    category: req.params.category
                 },
                 include: [itemB]
 
@@ -155,31 +156,36 @@ module.exports = {
      * CREATING ITEMS *
      ******************/
     createItem: function (req, res) {
-        db.Resturants.find({
-            where: {
-                name: {
-                    name: name.body.resturant
+        if (req.body.item || req.body.information || req.body.category || req.body.price || req.body.createdBy === " ") {
+            res.send(alert("Please Fill Form"))
+        } else {
+            db.Resturants.find({
+                where: {
+                    name: {
+                        name: name.body.resturant
+                    }
                 }
+            }).then(function (restF) {
+                itemCreation = {};
+                itemCreation.item = req.body.item;
+                itemCreation.information = req.body.information;
+                itemCreation.category = req.body.category;
+                itemCreation.price = req.body.price;
+                itemCreation.createdBy = req.body.createdBy;
+                itemCreation.ResturantId = restF.id;
 
-            }
-        }).then(function (restF) {
+                db.Items.create({ itemCreation })
+                    .then(function (info) { res.json(info) })
+                    .catch(function (err) { res.status(422).json(err) })
 
-            itemCreation = {};
-
-            itemCreation.item = req.body.item;
-            itemCreation.information = req.body.information;
-            itemCreation.categories = req.body.category;
-            itemCreation.price = req.body.price;
-            itemCreation.createdBy = req.body.createdBy
-
-            db.Items.create({ itemCreation })
-                .then(function (info) { res.json(info) })
-                .catch(function (err) { res.status(422).json(err) })
-
-        })
-
+            })
+        }
     },
 
+    createResturant: function (req, res) {
+
+
+    }
 
 
 
@@ -234,6 +240,12 @@ module.exports = {
             .then(rat => res.json(rat))
             .catch(err => res.status(422).json(err))
     },
+
+
+
+    /****************
+     * FINDLOCATION *
+     ****************/
 
 
 

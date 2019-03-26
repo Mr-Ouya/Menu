@@ -7,7 +7,7 @@ export default {
     },
     // Gets the book with the given id
     getSearchName: function (name) {
-        return axios.get("/menu/foods/" + name);
+        return axios.get("/menu/foods/search");
     },
     // Deletes the book with the given id
     getItemSelf: function (id) {
@@ -17,4 +17,8 @@ export default {
     getCateogory: function (category) {
         return axios.post("/menu/foods/cateogry/" + category);
     }
+
+
+
+
 };

@@ -22,13 +22,19 @@ module.exports = function (sequelize, DataTypes) {
             null: false
 
         },
-        location: {
-            type: DataTypes.STRING(100),
+        longitude: {
+            type: DataTypes.INTEGER(50),
             null: false
+
+
+        },
+        latitude: {
+            type: DataTypes.INTEGER(50),
+            //  null: false
         },
         information: {
             type: DataTypes.TEXT,
-            null: false
+            //  null: false
         },
         comments: {
             type: DataTypes.TEXT,
