@@ -185,7 +185,7 @@ module.exports = {
     createResturant: function (req, res) {
 
 
-    }
+    },
 
 
 

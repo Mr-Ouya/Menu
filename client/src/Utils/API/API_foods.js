@@ -11,7 +11,7 @@ export default {
     },
     // Deletes the book with the given id
     getItemSelf: function (id) {
-        return axios.delete("/menu/foods/" + id);
+        return axios.delete("/menu/foods/delete" + id);
     },
     // Saves a book to the database
     getCateogory: function (category) {

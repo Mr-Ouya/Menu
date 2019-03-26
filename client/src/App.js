@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Wrapper from "./testForm/wrapper"
-import FormCheck from "./testForm/Form"
-import API from "./Utils/API/API"
-import Results from "./results";
+import Wrapper from ".jtCom/testForm/wrapper"
+import FormCheck from ".jtCom/testForm/Form"
+import API from "./Utils/API/API_foods"
+import Results from ".jtCom/results";
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
   }
 
 
-
+ 
   handleChange(event) {
     this.setState({
       search: event.target.search
