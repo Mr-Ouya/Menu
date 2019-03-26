@@ -19,12 +19,10 @@ module.exports = function (sequelize, DataTypes) {
 
         rating: {
             type: DataTypes.STRING(255),
-            null: false
 
         },
         longitude: {
             type: DataTypes.INTEGER(50),
-            null: false
 
 
         },

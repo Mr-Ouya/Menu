@@ -15,7 +15,7 @@ function FormCreate(props) {
     <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.item} onChange={props.updateCreate} />
             </div>   <div className="form-group">
                 Information :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.information} onChange={props.updateCreate} />
+    <input type="textarea" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.information} onChange={props.updateCreate} />
             </div>   <div className="form-group">
                 Category :
     <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.category} onChange={props.updateCreate} />

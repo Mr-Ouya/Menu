@@ -7,17 +7,17 @@ export default {
     },
     // Gets the book with the given id
     getSearchName: function (name) {
-        return axios.get("/menu/foods/search");
+        return axios.get("/menu/foods/search/" + name);
     },
     // Deletes the book with the given id
-    getItemSelf: function (id) {
-        return axios.delete("/menu/foods/" + name+"/"+resturant);
+    getItemSelf: function (name, resturant) {
+        return axios.delete("/menu/foods/" + name + "/" + resturant);
     },
     // Saves a book to the database
     getCateogory: function (category) {
         return axios.post("/menu/foods/cateogry/" + category);
     },
-    createFood : function (){
+    createFood: function () {
         return axios.post("/menu/create/createFood")
     },
 

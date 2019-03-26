@@ -6,7 +6,7 @@ router.route("/")
     .get(controller.getAll);
 
 // /foods/:name
-router.route("/search")
+router.route("/search/:name")
     .get(controller.SearchItems);
 
 // /foods/:id/:restaurant

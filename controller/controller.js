@@ -18,11 +18,12 @@ module.exports = {
             .catch(function (err) { res.status(422).json(err) })
     },
     SearchItems: function (req, res) {
+        console.log(req.params.name)
         db.Items
             .findAll({
                 where: {
                     item: {
-                        $like: '%' + req.body.name + "%",
+                        $like: '%' + req.params.name + "%",
 
                     },
                 },
@@ -156,28 +157,28 @@ module.exports = {
      * CREATING ITEMS *
      ******************/
     createItem: function (req, res) {
-       
-            db.Resturants.find({
-                where: {
-                    name: {
-                        name: req.body.resturant
-                    }
+
+        db.Resturants.find({
+            where: {
+                name: {
+                    name: req.body.resturant
                 }
-            }).then(function (restF) {
-                itemCreation = {};
-                itemCreation.item = req.body.item;
-                itemCreation.information = req.body.information;
-                itemCreation.category = req.body.category;
-                itemCreation.price = req.body.price;
-                itemCreation.createdBy = req.body.createdBy;
-                itemCreation.ResturantId = restF.id;
+            }
+        }).then(function (restF) {
+            itemCreation = {};
+            itemCreation.item = req.body.item;
+            itemCreation.information = req.body.information;
+            itemCreation.category = req.body.category;
+            itemCreation.price = req.body.price;
+            itemCreation.createdBy = req.body.createdBy;
+            itemCreation.ResturantId = restF.id;
 
-                db.Items.create({ itemCreation })
-                    .then(function (info) { res.json(info) })
-                    .catch(function (err) { res.status(422).json(err) })
+            db.Items.create({ itemCreation })
+                .then(function (info) { res.json(info) })
+                .catch(function (err) { res.status(422).json(err) })
 
-            })
-        
+        })
+
     },
 
     createResturant: function (req, res) {
