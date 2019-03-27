@@ -5,6 +5,8 @@ module.exports = {
     return queryInterface.bulkInsert('resturants', [{
       name: 'Mc Donalds',
       rating: 3,
+      location: "Mississauga",
+      foodType: "FastFood",
       information: "some good shit litterally",
     }]),
       queryInterface.bulkInsert('resturants', [{

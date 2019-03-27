@@ -26,6 +26,11 @@ module.exports = function (sequelize, DataTypes) {
 
 
         },
+        location: {
+
+            type: DataTypes.STRING(225)
+
+        },
         latitude: {
             type: DataTypes.INTEGER(50),
             //  null: false

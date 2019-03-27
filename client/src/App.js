@@ -74,8 +74,13 @@ class App extends Component {
     console.log(this.state.search)
     APIfoods.getSearchName(this.state.search)
       .then(function (res) {
-        console.log(res)
-        this.setState({ results: res })
+        console.log(res.data[0])
+
+        res.data.forEach(element => {
+
+        });
+        this.state.myArray.push('new value')
+        this.setState({ results: res.data })
           .catch(err => console.log(err));
       }
       )

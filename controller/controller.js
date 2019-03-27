@@ -141,7 +141,7 @@ module.exports = {
                 name: req.params.name
             }
         }).then(function (restinfo) {
-            console.log(restinfo)
+            console.log(restinfo.id)
             db.Items.findAll({
 
                 where: {
@@ -158,26 +158,18 @@ module.exports = {
      ******************/
     createItem: function (req, res) {
 
-        db.Resturants.find({
-            where: {
-                name: {
-                    name: req.body.resturant
-                }
-            }
-        }).then(function (restF) {
-            itemCreation = {};
-            itemCreation.item = req.body.item;
-            itemCreation.information = req.body.information;
-            itemCreation.category = req.body.category;
-            itemCreation.price = req.body.price;
-            itemCreation.createdBy = req.body.createdBy;
-            itemCreation.ResturantId = restF.id;
 
-            db.Items.create({ itemCreation })
-                .then(function (info) { res.json(info) })
-                .catch(function (err) { res.status(422).json(err) })
+        itemCreation = {};
+        itemCreation.resturant = req.body.resturant;
+        itemCreation.item = req.body.item;
+        itemCreation.information = req.body.information;
+        itemCreation.category = req.body.category;
+        itemCreation.price = req.body.price;
+        itemCreation.createdBy = req.body.createdBy;
+        db.Items.create({ itemCreation })
+            .then(function (info) { res.json(info) })
+            .catch(function (err) { res.status(422).json(err) })
 
-        })
 
     },
 
@@ -248,6 +240,51 @@ module.exports = {
 
 
 
+
+
+
+
+
+
+
+    /*******************
+     * SEARCH DROPLIST *
+     *******************/
+
+
+    SearchBtn: function (req, res) {
+        whereCause = {}
+        let local = req.params.local;
+        let foodType = req.params.foodtype;
+        let price = req.params.price;
+        let rating = req.params.rating
+
+        if (local.length > 0) {
+            whereCause.local
+        } else { };
+
+        if (foodType.length > 0) {
+            whereCause.foodtype
+        } else { };
+        if (isNaN(price) === false) {
+            whereCause.price
+        } else { }
+        if (isNaN(rating) === false) {
+            whereCause.rating
+        } else { }
+
+        db.findAll({
+
+            where: {
+                whereCause
+            }
+
+        }).then(function (info) { res.json(info) })
+            .catch(function (err) { res.status(422).json(err) })
+
+
+
+    }
 
 
     /*
