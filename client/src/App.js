@@ -74,8 +74,8 @@ class App extends Component {
     })
     console.log(this.state.search)
   }
-  
-  handleCreateChange = event =>{
+
+  handleCreateChange = event => {
 
     const { name, value } = event.target;
     this.setState({
@@ -92,17 +92,31 @@ class App extends Component {
     e.preventDefault()
     console.log(this.state.search)
     APIfoods.getSearchName(this.state.search)
-      .then(function (res) {
-        console.log(res.data[0])
+      .then((res) => {
+        // console.log(res)
+        // console.log(res.data[0])
+        // let datalot = res.data
+        let dataLot = [];
 
-        res.data.forEach(element => {
+        for (var key in res.data) {
+          dataLot.push(res.data[key])
+          this.setState(prevState => ({
+            results: [...prevState.results, res.data[key]]
+          }))
+        }
+        console.log(dataLot)
+        // res.data.forEach(element => {
+        //   dataLot.push(element)
+        // });
+        // // console.log(dataLot)
+        // this.setState({
+        //   results: this.state.results.concat(dataLot)
+        // })
+        // this.state.myArray.push('new value')
+        // this.setState({ results: res.data })
+      })
+      .catch(err => console.log(err));
 
-        });
-        this.state.myArray.push('new value')
-        this.setState({ results: res.data })
-          .catch(err => console.log(err));
-      }
-      )
   }
 
 
@@ -142,58 +156,58 @@ class App extends Component {
 
         />
 
-<form>
+        <form>
 
-<UpdateItem
-      value={this.state.search}
-      onChange={this.handleChange}
-      searchAll={this.searchAll}
-      name="item"
-/>
+          <UpdateItem
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="item"
+          />
 
-<UpdateResturant
-      value={this.state.search}
-      onChange={this.handleChange}
-      searchAll={this.searchAll}
-      name="resturant"
-/>
+          <UpdateResturant
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="resturant"
+          />
 
 
-<UpdateCategory
+          <UpdateCategory
 
-value={this.state.search}
-onChange={this.handleChange}
-searchAll={this.searchAll}
-name="category"
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="category"
 
-/>
+          />
 
-<UpdateCreatedBy
-      value={this.state.search}
-      onChange={this.handleChange}
-      searchAll={this.searchAll}
-      name="createdBy"
-/>
+          <UpdateCreatedBy
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="createdBy"
+          />
 
-<UpdateInformation
-      value={this.state.search}
-      onChange={this.handleChange}
-      searchAll={this.searchAll}
-      name="information"
+          <UpdateInformation
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="information"
 
-/>
+          />
 
-<UpdatePrice
+          <UpdatePrice
 
-value={this.state.search}
-onChange={this.handleChange}
-searchAll={this.searchAll}
-name="price"
-/>
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="price"
+          />
 
-<SubmitCreate/>
-</form>
-</Wrapper>  
+          <SubmitCreate />
+        </form>
+      </Wrapper>
     )
   }
 }
