@@ -7,6 +7,7 @@ module.exports = {
       rating: 3,
       information: "some good shit litterally",
       price: 1.99,
+      foodType: "FastFood",
       createdBy: "Admin",
       resturantId: 1
 

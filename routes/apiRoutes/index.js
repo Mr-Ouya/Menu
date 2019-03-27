@@ -17,7 +17,7 @@ router.use("./update", update)
 
 router.use("/resturant", resturants)
 
-router.use("search/", searchInquiry)
+router.use("/search/", searchInquiry)
 
 // router.use("/signUp", signup);
 

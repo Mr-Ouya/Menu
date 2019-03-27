@@ -253,36 +253,57 @@ module.exports = {
 
 
     SearchBtn: function (req, res) {
-        whereCause = {}
-        let local = req.params.local;
-        let foodType = req.params.foodtype;
+        let whereCauselocal = {};
+        let location = req.params.local
+
         let price = req.params.price;
         let rating = req.params.rating
 
-        if (local.length > 0) {
-            whereCause.local
+        if (location !== " ") {
+            whereCauselocal.location = req.params.local;
         } else { };
+console.log(whereCauselocal)
+db.Resturants.findAll({
 
-        if (foodType.length > 0) {
-            whereCause.foodtype
+    where:whereCauselocal
+}).then(data =>{
+    console.log("this is the location wise resturant    " + data)
+     //   res.json(data)
+        let whereCause={};
+    console.log(data)
+if (req.params.foodtype !== " ") {
+            whereCause.foodType = req.params.foodtype;
         } else { };
         if (isNaN(price) === false) {
-            whereCause.price
-        } else { }
-        if (isNaN(rating) === false) {
-            whereCause.rating
-        } else { }
+            whereCause.price = {
 
-        db.findAll({
-
-            where: {
-                whereCause
+                [Op.between]: [0, parseInt(req.params.price)]
             }
+        } else {  
+            whereCause.price = {
+
+                [Op.between]: [0,200]
+            }
+        }
+        if (isNaN(rating) === false) {
+            whereCause.rating = req.params.rating
+        } else { }
+        console.log(whereCause)
+        db.Items.findAll({
+
+            where: 
+                whereCause
+            
 
         }).then(function (info) { res.json(info) })
             .catch(function (err) { res.status(422).json(err) })
 
 
+
+
+})
+
+        
 
     }
 

@@ -6,7 +6,6 @@ module.exports = {
       name: 'Mc Donalds',
       rating: 3,
       location: "Mississauga",
-      foodType: "FastFood",
       information: "some good shit litterally",
     }]),
       queryInterface.bulkInsert('resturants', [{
@@ -16,6 +15,7 @@ module.exports = {
       }], {}),
       queryInterface.bulkInsert('resturants', [{
         name: 'Subway',
+        location: "Mississauga",
         rating: 3,
         information: "goods but not good enough",
       }], {}),
