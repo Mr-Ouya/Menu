@@ -148,14 +148,14 @@ class App extends Component {
       value={this.state.search}
       onChange={this.handleChange}
       searchAll={this.searchAll}
-      name="Search"
+      name="item"
 />
 
 <UpdateResturant
       value={this.state.search}
       onChange={this.handleChange}
       searchAll={this.searchAll}
-      name="Search"
+      name="resturant"
 />
 
 
@@ -164,7 +164,7 @@ class App extends Component {
 value={this.state.search}
 onChange={this.handleChange}
 searchAll={this.searchAll}
-name="Search"
+name="category"
 
 />
 
@@ -172,14 +172,14 @@ name="Search"
       value={this.state.search}
       onChange={this.handleChange}
       searchAll={this.searchAll}
-      name="Search"
+      name="createdBy"
 />
 
 <UpdateInformation
       value={this.state.search}
       onChange={this.handleChange}
       searchAll={this.searchAll}
-      name="Search"
+      name="information"
 
 />
 
@@ -188,7 +188,7 @@ name="Search"
 value={this.state.search}
 onChange={this.handleChange}
 searchAll={this.searchAll}
-name="Search"
+name="price"
 />
 
 <SubmitCreate/>
