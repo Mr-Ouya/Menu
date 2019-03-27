@@ -6,6 +6,13 @@ import APIfoods from "./Utils/API/API_foods";
 //import APIRest from "./Utils/API/API_resturants";
 import Results from "./jtCom/results";
 import SubmitBtn from "./jtCom/testForm/Submit"
+import UpdateResturant from "./jtCom/createForm/UpdateResturant"
+import SubmitCreate from "./jtCom/createForm/SubmitCreate"
+import UpdateCategory from "./jtCom/createForm/UpdateCategory"
+import UpdateCreatedBy from "./jtCom/createForm/UpdateCreatedBy"
+import UpdateInformation from "./jtCom/createForm/UpdateInfo"
+import UpdateItem from "./jtCom/createForm/UpdateItem"
+import UpdatePrice from "./jtCom/createForm/UpdatePrice"
 
 class App extends Component {
 
@@ -67,6 +74,18 @@ class App extends Component {
     })
     console.log(this.state.search)
   }
+  
+  handleCreateChange = event =>{
+
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+
+
+
+  }
+
 
 
   searchAll = e => {
@@ -123,10 +142,59 @@ class App extends Component {
 
         />
 
-      </Wrapper >
+<form>
+
+<UpdateItem
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="Search"
+/>
+
+<UpdateResturant
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="Search"
+/>
 
 
-    );
+<UpdateCategory
+
+value={this.state.search}
+onChange={this.handleChange}
+searchAll={this.searchAll}
+name="Search"
+
+/>
+
+<UpdateCreatedBy
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="Search"
+/>
+
+<UpdateInformation
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="Search"
+
+/>
+
+<UpdatePrice
+
+value={this.state.search}
+onChange={this.handleChange}
+searchAll={this.searchAll}
+name="Search"
+/>
+
+<SubmitCreate/>
+</form>
+</Wrapper>  
+    )
   }
 }
 

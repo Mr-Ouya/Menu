@@ -8,7 +8,7 @@ function FormCreate(props) {
         <form action="/menu/create/">
             <div className="form-group">
                 Resturant :
-    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" value={props.resturant} onChange={props.updateCreate} />
+    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter Resturant" value={props.resturant} onChange={props.updateCreate} />
             </div>
             <div className="form-group">
                 Food :
