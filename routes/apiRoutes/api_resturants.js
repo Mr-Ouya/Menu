@@ -2,7 +2,7 @@ const router = require("express").Router();
 const controller = require("../../controller/controller.js");
 
 
-router.route("/:id")
+router.route("/:name")
     .get(controller.findResturant);
 
 router.route("/")
@@ -11,6 +11,8 @@ router.route("/")
 router.route("/getMenu/:name")
     .get(controller.getResturantMenu);
 
+router.route("/search")
+     .get(controller.SearchResturant)
 
 
 module.exports = router;

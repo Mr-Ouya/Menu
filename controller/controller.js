@@ -18,6 +18,7 @@ module.exports = {
             .catch(function (err) { res.status(422).json(err) })
     },
     SearchItems: function (req, res) {
+        console.log(req.params.name)
         db.Items
             .findAll({
                 where: {
@@ -32,6 +33,7 @@ module.exports = {
             .catch(function (err) { res.status(422).json(err) })
     },
     getItem: function (req, res) {
+
         db.Items
             .findOne({
                 where: {
@@ -45,9 +47,9 @@ module.exports = {
     },
     getCategoryItems: function (req, res) {
         db.Items
-            .findAll(req, params.category, {
+            .findAll({
                 where: {
-                    category: category
+                    category: req.params.category
                 },
                 include: [itemB]
 
@@ -139,7 +141,7 @@ module.exports = {
                 name: req.params.name
             }
         }).then(function (restinfo) {
-            console.log(restinfo)
+            console.log(restinfo.id)
             db.Items.findAll({
 
                 where: {
@@ -155,31 +157,26 @@ module.exports = {
      * CREATING ITEMS *
      ******************/
     createItem: function (req, res) {
-        db.Resturants.find({
-            where: {
-                name: {
-                    name: name.body.resturant
-                }
 
-            }
-        }).then(function (restF) {
 
-            itemCreation = {};
+        itemCreation = {};
+        itemCreation.resturant = req.body.resturant;
+        itemCreation.item = req.body.item;
+        itemCreation.information = req.body.information;
+        itemCreation.category = req.body.category;
+        itemCreation.price = req.body.price;
+        itemCreation.createdBy = req.body.createdBy;
+        db.Items.create({ itemCreation })
+            .then(function (info) { res.json(info) })
+            .catch(function (err) { res.status(422).json(err) })
 
-            itemCreation.item = req.body.item;
-            itemCreation.information = req.body.information;
-            itemCreation.categories = req.body.category;
-            itemCreation.price = req.body.price;
-            itemCreation.createdBy = req.body.createdBy
-
-            db.Items.create({ itemCreation })
-                .then(function (info) { res.json(info) })
-                .catch(function (err) { res.status(422).json(err) })
-
-        })
 
     },
 
+    createResturant: function (req, res) {
+        db.Resturants.create({})
+
+    },
 
 
 
@@ -237,6 +234,78 @@ module.exports = {
 
 
 
+    /****************
+     * FINDLOCATION *
+     ****************/
+
+
+
+
+
+
+
+
+
+
+    /*******************
+     * SEARCH DROPLIST *
+     *******************/
+
+
+    SearchBtn: function (req, res) {
+        let whereCauselocal = {};
+        let location = req.params.local
+
+        let price = req.params.price;
+        let rating = req.params.rating
+
+        if (location !== " ") {
+            whereCauselocal.location = req.params.local;
+        } else { };
+console.log(whereCauselocal)
+db.Resturants.findAll({
+
+    where:whereCauselocal
+}).then(data =>{
+    console.log("this is the location wise resturant    " + data)
+     //   res.json(data)
+        let whereCause={};
+    console.log(data)
+if (req.params.foodtype !== " ") {
+            whereCause.foodType = req.params.foodtype;
+        } else { };
+        if (isNaN(price) === false) {
+            whereCause.price = {
+
+                [Op.between]: [0, parseInt(req.params.price)]
+            }
+        } else {  
+            whereCause.price = {
+
+                [Op.between]: [0,200]
+            }
+        }
+        if (isNaN(rating) === false) {
+            whereCause.rating = req.params.rating
+        } else { }
+        console.log(whereCause)
+        db.Items.findAll({
+
+            where: 
+                whereCause
+            
+
+        }).then(function (info) { res.json(info) })
+            .catch(function (err) { res.status(422).json(err) })
+
+
+
+
+})
+
+        
+
+    }
 
 
     /*

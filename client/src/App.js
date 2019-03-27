@@ -1,35 +1,108 @@
 import React, { Component } from 'react';
 import './App.css';
-import Wrapper from "./testForm/wrapper"
-import FormCheck from "./testForm/Form"
-import API from "./Utils/API/API"
+import Wrapper from "./jtCom/testForm/wrapper";
+import FormCheck from "./jtCom/testForm/Form";
+import APIfoods from "./Utils/API/API_foods";
+//import APIRest from "./Utils/API/API_resturants";
+import Results from "./jtCom/results";
+import SubmitBtn from "./jtCom/testForm/Submit"
+import UpdateResturant from "./jtCom/createForm/UpdateResturant"
+import SubmitCreate from "./jtCom/createForm/SubmitCreate"
+import UpdateCategory from "./jtCom/createForm/UpdateCategory"
+import UpdateCreatedBy from "./jtCom/createForm/UpdateCreatedBy"
+import UpdateInformation from "./jtCom/createForm/UpdateInfo"
+import UpdateItem from "./jtCom/createForm/UpdateItem"
+import UpdatePrice from "./jtCom/createForm/UpdatePrice"
 
 class App extends Component {
 
   state = {
     search: "",
-    results: []
+    results: [],
+    createFood: {},
+    item: "",
+    information: "",
+    category: "",
+    price: 0,
+    createdBy: "",
+    resturantName: ""
   }
 
 
+  updateCreate = event => {
 
-  handleChange(event) {
     this.setState({
-      search: event.target.search
+
+      item: event.target.item,
+      information: event.target.information,
+      category: event.target.category,
+      price: event.target.createdBy,
+      createdBy: event.target.price,
+      resturantName: event.target.resturantName
+
+
     })
+
+    this.setState({
+
+
+
+    })
+
+  }
+
+  createItem = e => {
+
+    if (this.state.createResturant.item || this.state.createResturant.information || this.state.createResturant.category || this.state.createResturant.createdBy || this.state.createResturant.price || this.state.createResturant.resturantName === "") {
+
+      alert("Please fill the form to complete")
+    } else {
+
+      APIfoods.createFood(this.state.createFood).then(res => {
+
+
+      })
+
+    }
+
   }
 
 
-  searchAll = (e) => {
+  handleChange = event => {
+    this.setState({
+      search: event.target.value
+    })
+    console.log(this.state.search)
+  }
+  
+  handleCreateChange = event =>{
+
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+
+
+
+  }
+
+
+
+  searchAll = e => {
     e.preventDefault()
-    console.log("gi")
-    API.getSearchName(this.state.search)
-      .then(
-        res =>
-          this.setState({ results: res })
+    console.log(this.state.search)
+    APIfoods.getSearchName(this.state.search)
+      .then(function (res) {
+        console.log(res.data[0])
 
-      ).catch(err => console.log(err));
+        res.data.forEach(element => {
 
+        });
+        this.state.myArray.push('new value')
+        this.setState({ results: res.data })
+          .catch(err => console.log(err));
+      }
+      )
   }
 
 
@@ -46,15 +119,82 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
+        <form>
 
-        <FormCheck
-          value={this.state.search}
-          onChange={this.handleChange}
-          searchAll={this.searchAll}
+          <FormCheck
+            value={this.state.search}
+            onChange={this.handleChange}
+            searchAll={this.searchAll}
+            name="Search"
+          />
+
+          <SubmitBtn
+
+
+            onClick={this.searchAll}
+          />
+
+        </form>
+
+        <Results
+
+          results={this.state.results}
+
         />
 
-      </Wrapper>
-    );
+<form>
+
+<UpdateItem
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="item"
+/>
+
+<UpdateResturant
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="resturant"
+/>
+
+
+<UpdateCategory
+
+value={this.state.search}
+onChange={this.handleChange}
+searchAll={this.searchAll}
+name="category"
+
+/>
+
+<UpdateCreatedBy
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="createdBy"
+/>
+
+<UpdateInformation
+      value={this.state.search}
+      onChange={this.handleChange}
+      searchAll={this.searchAll}
+      name="information"
+
+/>
+
+<UpdatePrice
+
+value={this.state.search}
+onChange={this.handleChange}
+searchAll={this.searchAll}
+name="price"
+/>
+
+<SubmitCreate/>
+</form>
+</Wrapper>  
+    )
   }
 }
 

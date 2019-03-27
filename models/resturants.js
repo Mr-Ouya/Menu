@@ -19,16 +19,25 @@ module.exports = function (sequelize, DataTypes) {
 
         rating: {
             type: DataTypes.STRING(255),
-            null: false
+
+        },
+        longitude: {
+            type: DataTypes.INTEGER(50),
+
 
         },
         location: {
-            type: DataTypes.STRING(100),
-            null: false
+
+            type: DataTypes.STRING(225)
+
+        },
+        latitude: {
+            type: DataTypes.INTEGER(50),
+            //  null: false
         },
         information: {
             type: DataTypes.TEXT,
-            null: false
+            //  null: false
         },
         comments: {
             type: DataTypes.TEXT,

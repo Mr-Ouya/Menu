@@ -12,14 +12,26 @@ module.exports = function (sequelize, DataTypes) {
 
         },
 
+        resturant: {
+            type: DataTypes.STRING(225)
+
+        },
+
+
+
         item: {
             type: DataTypes.STRING(225),
             null: false
         },
 
         rating: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT(5),
             defaultValue: null,
+        },
+
+
+        foodType: {
+            type: DataTypes.STRING(225)
         },
 
         comments: {
