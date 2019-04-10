@@ -2,27 +2,32 @@ import React from "react"
 
 
 
-function CityList(props){
+function Title(props) {
 
 
-    return(
+	return (
+		<div class="topbar">
+			<div id="container">
+				<header class="cd-header">
+					<div>
+						<img class="logo" src="img\WOTM Logo.jpg.png" alt id="logo" />
+					</div>
+					<div>
+						<h1 class="logotitle">山卄卂ㄒ'丂 ㄖ几 ㄒ卄乇 爪乇几ㄩ?</h1>
+					</div>
+					<a href="#0" class="cd-3d-nav-trigger">
+						<script>
+							$(window).scroll(function () {
+						var theta = $(window).scrollTop() / 600 % Math.PI;
+						$('#logo').css({transform: 'rotate(' + theta + 'rad)' });
+																	});
+				</script>
+						<span></span>
+					</a>
+				</header>
 
-     
-<li>
-<a href="#click" class="menu">
-<h2 class="menu-title menu-title_4th">Rating</h2>
-					<ul class="menu-dropdown">
-					  <li>★</li>
-					  <li>★★</li>
-					  <li>★★★</li>
-					  <li>★★★★</li>
-					  <li>★★★★★</li>
-					</ul>
-				  </a>
-				</li>
-
-    )
-}
-
-export default CityList;
-
+				)
+		}
+		
+		export default Title;
+		

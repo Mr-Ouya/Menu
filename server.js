@@ -11,7 +11,7 @@ const path = require('path')
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 5000 || "mysql://t0i7pirl1legduv4:zaivmxg4dgnuuy03@jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/d4iomu0albnc3a30 d";
+var PORT = process.env.PORT || 5000;
 
 
 

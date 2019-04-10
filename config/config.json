@@ -5,7 +5,7 @@
     "database": "menu_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "mysql://t0i7pirl1legduv4:zaivmxg4dgnuuy03@jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/d4iomu0albnc3a30 d"
+    "port": "8889"
   },
   "test": {
     "username": "root",
@@ -19,6 +19,6 @@
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql://t0i7pirl1legduv4:zaivmxg4dgnuuy03@jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/d4iomu0albnc3a30 d"
+    "dialect": "mysql2"
   }
 }
