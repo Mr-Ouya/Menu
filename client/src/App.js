@@ -13,7 +13,9 @@ import UpdateCreatedBy from "./jtCom/createForm/UpdateCreatedBy"
 import UpdateInformation from "./jtCom/createForm/UpdateInfo"
 import UpdateItem from "./jtCom/createForm/UpdateItem"
 import UpdatePrice from "./jtCom/createForm/UpdatePrice"
-
+import Title from "./Componets/title"
+import NavBar from "./Componets/navbar"
+/*
 class App extends Component {
 
   state = {
@@ -208,6 +210,51 @@ class App extends Component {
           <SubmitCreate />
         </form>
       </Wrapper>
+    )
+  }
+}
+
+export default App;
+*/
+
+class App extends Component {
+
+constructor(props){
+  super(props)
+  this.handleScroll = this.handleScroll.bind(this);
+}
+
+componentDidMount() {
+  window.addEventListener('scroll', this.handleScroll);
+
+}
+componentWillUnmount(){
+  window.removeEventListener('scroll', this.handleScroll);
+}
+
+handleScroll = e =>{
+  $(window).scroll(function() {
+    var theta = $(window).scrollTop() / 600 % Math.PI;
+     $('#logo').css({ transform: 'rotate(' + theta + 'rad)' });
+    });
+}
+
+
+
+
+
+
+
+  render() {
+    return (
+      
+     
+      <Router>
+      <Title />
+      <NavBar />
+      
+      </Router>
+
     )
   }
 }
